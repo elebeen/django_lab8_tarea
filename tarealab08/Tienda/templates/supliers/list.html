@@ -1,17 +1,34 @@
 {% extends 'base.html' %}
 {% block title %}Lista de Proveedores{% endblock %}
+
 {% block content %}
-<h2>Proveedores</h2>
-<a href="{% url 'suplier-create' %}">Crear nuevo Proveedor</a>
-<ul>
-    {% for suplier in supliers %}
-        <li>
-            <a href="{% url 'suplier-detail' suplier.pk %}">{{ suplier.name }}</a> 
-            <a href="{% url 'suplier-edit' suplier.pk %}">Editar</a>
-            <a href="{% url 'suplier-delete' suplier.pk %}">Eliminar</a>
-        </li>
-    {% empty %}
-        <li>No hay proveedores.</li>
-    {% endfor %}
-</ul>
+<div class="container mt-4">
+  <h2 class="mb-4">Proveedores</h2>
+  <a href="{% url 'suplier-create' %}" class="btn btn-success mb-3">Crear nuevo proveedor</a>
+
+  {% if supliers %}
+  <table class="table table-striped table-bordered">
+    <thead class="table-light">
+      <tr>
+        <th>Nombre</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for suplier in supliers %}
+      <tr>
+        <td>{{ suplier.name }}</td>
+        <td>
+          <a href="{% url 'suplier-detail' suplier.pk %}" class="btn btn-sm btn-info">Ver</a>
+          <a href="{% url 'suplier-edit' suplier.pk %}" class="btn btn-sm btn-warning">Editar</a>
+          <a href="{% url 'suplier-delete' suplier.pk %}" class="btn btn-sm btn-danger">Eliminar</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <div class="alert alert-secondary">No hay proveedores registrados.</div>
+  {% endif %}
+</div>
 {% endblock %}
