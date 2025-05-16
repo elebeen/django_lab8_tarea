@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block title %}Detalle de la Categoria{% endblock %}
+{% block content %}
+<h2>{{ object.name }}</h2>
+<p><strong>name:</strong> ${{ object.name }}</p>
+<p><strong>Descripción:</strong> {{ object.description }}</p>
+<a href="{% url 'category-list' %}">Volver</a>
+{% endblock %}

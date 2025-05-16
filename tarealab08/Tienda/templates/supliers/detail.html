@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block title %}Detalle del Proveedor{% endblock %}
+{% block content %}
+<h2>{{ object.name }}</h2>
+<p><strong>Nombre:</strong> {{ object.name }}</p>
+<p><strong>Contacto:</strong> ${{ object.contact_info }}</p>
+<a href="{% url 'suplier-list' %}">Volver</a>
+{% endblock %}

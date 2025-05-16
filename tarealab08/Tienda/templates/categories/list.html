@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Lista de Productos{% endblock %}
+{% block content %}
+<h2>Productos</h2>
+<a href="{% url 'category-create' %}">Crear nueva categoria</a>
+<ul>
+    {% for category in categories %}
+        <li>
+            <a href="{% url 'category-detail' category.pk %}">{{ category.name }}</a> 
+            <a href="{% url 'category-edit' category.pk %}">Editar</a>
+            <a href="{% url 'category-delete' category.pk %}">Eliminar</a>
+        </li>
+    {% empty %}
+        <li>No hay productos.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

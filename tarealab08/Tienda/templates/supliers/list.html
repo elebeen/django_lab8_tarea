@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Lista de Proveedores{% endblock %}
+{% block content %}
+<h2>Proveedores</h2>
+<a href="{% url 'suplier-create' %}">Crear nuevo Proveedor</a>
+<ul>
+    {% for suplier in supliers %}
+        <li>
+            <a href="{% url 'suplier-detail' suplier.pk %}">{{ suplier.name }}</a> 
+            <a href="{% url 'suplier-edit' suplier.pk %}">Editar</a>
+            <a href="{% url 'suplier-delete' suplier.pk %}">Eliminar</a>
+        </li>
+    {% empty %}
+        <li>No hay proveedores.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
