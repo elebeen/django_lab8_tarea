@@ -2,6 +2,7 @@ from django.urls import path # type: ignore
 from . import views
 
 urlpatterns = [
+    path('', views.IndexView.as_view(), name='api-index'),
     path('api/products/', views.ProductApiListCreateView.as_view(), name='product-list-create'),
     path('api/products/<int:pk>/', views.ProductApiDetailView.as_view(), name='product-detail'),
     path('api/categories/', views.CategoryApiListCreateView.as_view(), name='category-list-create'),
