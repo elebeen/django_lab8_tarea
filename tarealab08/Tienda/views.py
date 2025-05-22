@@ -6,27 +6,27 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 from .forms import ProductForm, CategoryForm, SuplierForm
 # Create your views here.
 
-class ProductListCreateView(generics.ListCreateAPIView):
+class ProductApiListCreateView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
-class ProductDetailView(generics.RetrieveUpdateDestroyAPIView):
+class ProductApiDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
-    serializer_class = ProductSerializer
+    serializer_class = ProductSerializer 
 
-class CategoryListCreateView(generics.ListCreateAPIView):
+class CategoryApiListCreateView(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
-class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
+class CategoryApiDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
-class SuplierListCreateView(generics.ListCreateAPIView):
+class SuplierApiListCreateView(generics.ListCreateAPIView):
     queryset = Suplier.objects.all()
     serializer_class = SuplierSerializer
 
-class SuplierDetailView(generics.RetrieveUpdateDestroyAPIView):
+class SuplierApiDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Suplier.objects.all()
     serializer_class = SuplierSerializer
 
