@@ -1,11 +1,23 @@
 {% extends 'base.html' %}
-{% block title %}Formulario de Categoria{% endblock %}
+{% block title %}Formulario de Categoría{% endblock %}
+
 {% block content %}
-<h2>{% if object %}Editar{% else %}Crear{% endif %} Producto</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Guardar</button>
-</form>
-<a href="{% url 'category-list' %}">Volver a la lista</a>
+<div class="container mt-4">
+  <h2 class="mb-4">{% if object %}Editar{% else %}Crear{% endif %} Categoría</h2>
+
+  <form method="post" class="card shadow-sm p-4">
+      {% csrf_token %}
+      {% for field in form %}
+          <div class="mb-3">
+              <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+              {{ field }}
+              {% if field.errors %}
+                  <div class="text-danger small">{{ field.errors }}</div>
+              {% endif %}
+          </div>
+      {% endfor %}
+      <button type="submit" class="btn btn-primary">Guardar</button>
+      <a href="{% url 'category-list' %}" class="btn btn-secondary">Volver</a>
+  </form>
+</div>
 {% endblock %}

@@ -1,8 +1,21 @@
 {% extends 'base.html' %}
 {% block title %}Detalle del Proveedor{% endblock %}
+
 {% block content %}
-<h2>{{ object.name }}</h2>
-<p><strong>Nombre:</strong> {{ object.name }}</p>
-<p><strong>Contacto:</strong> ${{ object.contact_info }}</p>
-<a href="{% url 'suplier-list' %}">Volver</a>
+<div class="container mt-4">
+  <div class="card shadow-sm">
+    <div class="card-header bg-dark text-white">
+      <h4 class="mb-0">{{ object.name }}</h4>
+    </div>
+    <div class="card-body">
+      <p><strong>Nombre:</strong> {{ object.name }}</p>
+      <p><strong>Contacto:</strong> {{ object.contact_info }}</p>
+    </div>
+    <div class="card-footer text-end">
+      <a href="{% url 'suplier-list' %}" class="btn btn-secondary">Volver a la lista</a>
+      <a href="{% url 'suplier-edit' object.pk %}" class="btn btn-warning">Editar</a>
+      <a href="{% url 'suplier-delete' object.pk %}" class="btn btn-danger">Eliminar</a>
+    </div>
+  </div>
+</div>
 {% endblock %}

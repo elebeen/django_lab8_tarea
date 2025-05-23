@@ -4,29 +4,53 @@ from .models import Product, Suplier, Category
 from rest_framework import generics # type: ignore
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView # type: ignore
 from .forms import ProductForm, CategoryForm, SuplierForm
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.reverse import reverse
 # Create your views here.
 
-class ProductListCreateView(generics.ListCreateAPIView):
+class IndexView(APIView):
+    
+    def get(self,request, format=None):
+        context = {
+            'products': {
+                'list_create': reverse('product-list-create', request=request, format=format),
+                'detail': reverse('product-detail', args=[1], request=request, format=format),  # Ejemplo con ID 1
+            },
+            'categories': {
+                'list_create': reverse('category-list-create', request=request, format=format),
+                'detail': reverse('category-detail', args=[1], request=request, format=format),
+            },
+            'supliers': {
+                'list_create': reverse('suplier-list-create', request=request, format=format),
+                'detail': reverse('suplier-detail', args=[1], request=request, format=format),
+            },
+            'mensaje':{'servidor activo'}
+        }
+
+        return Response(context)
+
+class ProductApiListCreateView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
-class ProductDetailView(generics.RetrieveUpdateDestroyAPIView):
+class ProductApiDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
-    serializer_class = ProductSerializer
+    serializer_class = ProductSerializer 
 
-class CategoryListCreateView(generics.ListCreateAPIView):
+class CategoryApiListCreateView(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
-class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
+class CategoryApiDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
-class SuplierListCreateView(generics.ListCreateAPIView):
+class SuplierApiListCreateView(generics.ListCreateAPIView):
     queryset = Suplier.objects.all()
     serializer_class = SuplierSerializer
 
-class SuplierDetailView(generics.RetrieveUpdateDestroyAPIView):
+class SuplierApiDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Suplier.objects.all()
     serializer_class = SuplierSerializer
 

@@ -2,12 +2,13 @@ from django.urls import path # type: ignore
 from . import views
 
 urlpatterns = [
-    path('api/products/', views.ProductListCreateView.as_view(), name='product-list-create'),
-    path('api/products/<int:pk>/', views.ProductDetailView.as_view(), name='product-detail'),
-    path('api/categories/', views.CategoryListCreateView.as_view(), name='category-list-create'),
-    path('api/categories/<int:pk>/', views.CategoryDetailView.as_view(), name='category-detail'),
-    path('api/supliers/', views.SuplierListCreateView.as_view(), name='suplier-list-create'),
-    path('api/supliers/<int:pk>/', views.SuplierDetailView.as_view(), name='suplier-detail'),
+    path('', views.IndexView.as_view(), name='api-index'),
+    path('api/products/', views.ProductApiListCreateView.as_view(), name='product-list-create'),
+    path('api/products/<int:pk>/', views.ProductApiDetailView.as_view(), name='product-detail'),
+    path('api/categories/', views.CategoryApiListCreateView.as_view(), name='category-list-create'),
+    path('api/categories/<int:pk>/', views.CategoryApiDetailView.as_view(), name='category-detail'),
+    path('api/supliers/', views.SuplierApiListCreateView.as_view(), name='suplier-list-create'),
+    path('api/supliers/<int:pk>/', views.SuplierApiDetailView.as_view(), name='suplier-detail'),
 
     path('products/', views.ProductListView.as_view(), name='product-list'),
     path('products/create/', views.ProductCreateView.as_view(), name='product-create'),
